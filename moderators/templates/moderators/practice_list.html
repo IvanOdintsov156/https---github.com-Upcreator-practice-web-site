@@ -1,0 +1,60 @@
+{% extends 'moderators/base.html' %}
+{% block content %}
+    <h2>Список практик</h2>
+    <a href="{% url 'moderators:create_practice' %}">Создание практики</a>
+    <a href="{% url 'moderators:moderator_dashboard' %}">Профиль</a>
+    <a href="{% url 'applications:application_list' %}">Заявки</a>
+    <table>
+        <thead>
+            <tr>
+                <th>ФИО руководителя</th>
+                <th>Название практики</th>
+                <th>Требуемое количество участников</th>
+                <th>Описание практики</th>
+                <th>Требуемые навыки</th>
+                <th>Начало практики</th>
+                <th>Конец практики</th>
+                <th>Направление</th>
+                <th>Регион</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for practice in practices %}
+            <tr>
+                <td>{{ practice.practice_director_full_name }}</td>
+                <td>{{ practice.name_of_PSK_or_structure }}</td>
+                <td>{{ practice.need_amount_of_practicants }}</td>
+                <td>{{ practice.practice_description }}</td>
+                <td>{{ practice.required_skills }}</td>
+                <td>{{ practice.start_date }}</td>
+                <td>{{ practice.end_date }}</td>
+                <td>{{ practice.direction }}</td>
+                <td>{{ practice.region }}</td>
+                <td>
+                    <a href="{% url 'moderators:edit_practice' practice_id=practice.id %}">Редактировать</a>
+                    <a href="{% url 'moderators:delete_practice' practice_id=practice.id %}">Удалить</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if practices.has_previous %}
+                <a href="?page=1">&laquo; первая</a>
+                <a href="?page={{ practices.previous_page_number }}">предыдущая</a>
+            {% endif %}
+
+            <span class="current-page">
+                Страница {{ practices.number }} из {{ practices.paginator.num_pages }}.
+            </span>
+
+            {% if practices.has_next %}
+                <a href="?page={{ practices.next_page_number }}">следующая</a>
+                <a href="?page={{ practices.paginator.num_pages }}">последняя &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+{% endblock %}

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет. Профиль</title>
+</head>
+<body>
+    <h1>Профиль</h1>
+    <p>ФИО модератора: {{ moderator.moderator_full_name }}</p>
+    <p>Логин: {{ moderator.username }}</p>
+    <p>Почта: {{ moderator.email }}</p>
+    <p>Роль: {{ moderator.role }}</p>
+    <p>Должность: {{ moderator.position }}</p>
+    <p>Отдел: {{ moderator.department }}</p>
+    <p>Телефон: {{ moderator.phone }}</p>
+    <p>Регион: {{ moderator.region }}</p>
+    <a href="{% url 'moderators:practice_list' %}">Главная</a>
+</body>
+</html>

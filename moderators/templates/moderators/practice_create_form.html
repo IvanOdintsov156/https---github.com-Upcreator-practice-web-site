@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Создание практики
+  </title>
+  <a href="{% url 'moderators:moderator_dashboard' %}">Профиль</a>
+  <a href="{% url 'moderators:practice_list' %}">Главная</a>
+</head>
+<body>
+  <h2>Создание практики</h2>
+  <form method="post">
+    {% csrf_token %}
+    {% for field in form %}
+      <p>{{ field.label_tag }} {{ field }}</p>
+    {% endfor %}
+    <button type="submit">Создать</button>
+  </form>
+</body>
+</html>
+  

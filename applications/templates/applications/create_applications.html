@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Создание заявки</title>
+</head>
+<body>
+    <h1>Создание заявки</h1>
+
+    <form method="post" action="{% url 'applications:create_application_view' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Создать заявку">
+    </form>
+</body>
+</html>
